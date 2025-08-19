@@ -1,0 +1,3 @@
+The purpose of this code is to reinforce and integrate the learnings of basic electrical courses taught in university. \
+The idea is to keep adding more and more features to this code base as I keep learning. I will try to do all of this in JupyterNB, as it provides support for md format. This can serve me well for maintaining notes as well for futre. \
+I will also keep updating a file called log.md so as to keep noting, as well as updating the changes I implement while studying this.
