@@ -2,8 +2,7 @@
 
 # ChaosToCode - Computational Engineering Playground
 
-Welcome to my personal laboratory for computational exploration! This repository serves as a digital sandbox where theoretical concepts from my engineering courses come to life through code. Each project represents a journey from mathematical equations on paper to working simulations and solvers.\
-""" Gen AI was used to simplify/rewrite this MD file. The projects have been explained in a much more depth, but the philosophies have been provided by me.
+Welcome to my personal laboratory for computational exploration! This repository serves as a digital sandbox where theoretical concepts from my engineering courses come to life through code. Each project represents a journey from mathematical equations on paper to working simulations and solvers.
 
 ## 🎯 Philosophy
 
