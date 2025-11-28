@@ -33,6 +33,27 @@ A comprehensive exploration of harmonic oscillators, from simple to damped syste
 **Mathematical Foundation:** Solves the general equation: `ẍ + 2ζωₙẋ + ωₙ²x = F(t)`
 
 ---
+### 02_Gravity
+
+**Course:** PH1010 (Physics)
+
+A simulation framework exploring gravitational interactions between celestial bodies. While currently focused on the classic Two-Body Problem, the architecture is designed to scale toward complex N-body simulations.
+
+**Key Features:**
+
+- **Center of Mass Reference Frame:** Simplifies calculations by analyzing motion relative to the system's barycenter.
+- **Dynamic Initialization:** Calculates the state vectors (position and velocity) of the second body automatically based on the inputs of the first to ensure system stability.
+- **High-Precision Integration:** Utilizes the Runge-Kutta 4th Order (RK4) method for accurate numerical integration of orbital mechanics.
+- **Visualization Modes:**
+    - *Decaying Trail:* Aesthetic visualization for presentation.
+    - *Persistent Trail:* Full path tracking for scientific analysis.
+    - *No Trail:* Performance-focused rendering.
+
+**Ongoing Development:** Future plans include expanding the solver to handle the chaotic Three-Body Problem in collaboration with a team.
+
+*> **Note:** The original Jupyter notebook for this project is currently unavailable; the implementation resides in the Python scripts.*
+
+---
 
 ### 03_EE1100_ElectricCircuitSolver
 
