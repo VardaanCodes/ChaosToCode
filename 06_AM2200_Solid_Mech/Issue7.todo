@@ -1,0 +1,30 @@
+State of Stress Calculator for Prismatic Bodies and Beams
+=========================================================
+
+Description
+-----------
+Develop a calculator for the state of stress in prismatic bodies and beams subjected to axial, torsional, shear, and bending loads as functions of x, y, z.
+
+Scope
+-----
+Supported Loading Types:
+- Axial load
+- Torsional load --- Only for cylinder
+- Shear load
+- Bending load
+
+Inputs:
+- Geometry and cross-sectional properties (A, I, J)
+- Material properties (E, G, Poisson's ratio)
+- External loads and boundary conditions
+
+Outputs:
+- Stress components at user-defined points
+- Principal stresses and maximum shear stress
+- (Optional) Safety factor if allowable/yield stress is provided
+
+Implementation
+--------------
+- Language: Python
+- Libraries: NumPy, SciPy, SymPy
+- Approach: Start with closed-form solutions; API must support extensibility.
