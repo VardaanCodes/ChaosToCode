@@ -28,3 +28,49 @@ Implementation
 - Language: Python
 - Libraries: NumPy, SciPy, SymPy
 - Approach: Start with closed-form solutions; API must support extensibility.
+
+TODO Checklist
+==============
+
+Phase 1: Foundation and Axial Loading (Current State Improvement)
+-----------------------------------------------------------------
+- [ ] Refactor 01.ipynb into a clean class layout (Material, Geometry, Body, Loads).
+- [ ] Compute and store geometry properties A, Iy, Iz, J for rectangular and circular sections.
+- [ ] Implement axial stress/strain with BC-aware reactions; validate load positions.
+- [ ] Implement torsional shear stress using J and G; support torque vs x.
+- [ ] Implement transverse shear stress (τxz/τyz) for rectangular/circular sections; support point/distributed shear.
+- [ ] Implement bending stress σx from My, Mz with superposition of multiple loads.
+- [ ] Add combined stress evaluator at user-specified (x, y, z).
+- [ ] Compute principal stresses and max shear; add optional safety factor if yield/allowable provided.
+- [ ] Design results structure (dict/DataFrame) plus summary printer.
+- [ ] Add plots for N(x), V(x), M(x), T(x) and key stress distributions/envelopes.
+- [ ] Add simple unit tests/benchmarks against textbook cases (axial bar, pure torsion, simple beam).
+- [ ] Document usage examples in the notebook (setup, run, query stresses, plot).
+
+Phase 1: Current State Improvement (Detailed Tasks)
+--------------------------------------------------
+- [ ] Refine Material Class: Implement G (Shear Modulus) as a @property for dynamic calculation. Add checks for Poisson's Ratio range (-1 < ν ≤ 0.5). *(Material)*
+- [x] Implement Named Attributes: Replace indexed access (e.g., self.load.load[0]) with named attributes (e.g., self.load.value) in AxialLoad. *(AxialLoad)*
+- [ ] Define Load Abstraction: Create an Abstract Base Class (Load using abc.ABC) to define a common interface for all load types. *(Load)*
+- [ ] Decouple Boundary Conditions: Create a separate BoundaryConditions class to manage constraints, separating them from CuboidalBeam. *(Body, BoundaryConditions)*
+- [ ] Validate Axial Logic: Review and ensure the Body.axl (internal force/stress calculation) accurately reflects the physics for a point load on a cantilevered beam, respecting sign conventions. *(Body)*
+
+Phase 2: Geometry and Cross-Sectional Properties
+------------------------------------------------
+- [ ] Abstract Beam Geometry: Create an Abstract Base Class (BeamGeometry) for all beam types. *(BeamGeometry)*
+- [ ] Calculate Section Properties: Add required cross-sectional properties to CuboidalBeam as @property methods: Area (A), Area Moment of Inertia (Izz, Iyy), and Polar Moment of Inertia (J). *(CuboidalBeam)*
+- [ ] Generalize Beam Dimensions: Modify CuboidalBeam to be more descriptive (e.g., height and width instead of breadth and width). *(CuboidalBeam)*
+
+Phase 3: Extending Loading Types and Stress Calculation
+------------------------------------------------------
+- [ ] Torsional Load Class: Implement TorsionalLoad inheriting from Load. Calculate the maximum shear stress component τxy or τxz using τmax = T r / J. *(TorsionalLoad, Body)*
+- [ ] Bending Load Class: Implement BendingLoad (e.g., point/distributed transverse force). Calculate the bending stress σx = M y / I. *(BendingLoad, Body)*
+- [ ] Shear Load Class: Implement ShearLoad. Calculate the transverse shear stress τ = V Q / I t. *(ShearLoad, Body)*
+- [ ] Implement Stress Tensor Logic: Create a generic method (e.g., Body.calculate_stress(x, y, z)) to combine contributions from all active loads into the 3×3 stress tensor σij. *(Body)*
+
+Phase 4: Stress Post-Processing and Output
+------------------------------------------
+- [ ] Principal Stresses: Implement calculation of the three principal stresses (σ1, σ2, σ3) from the stress tensor. *(Body)*
+- [ ] Maximum Shear Stress: Implement calculation of the maximum shear stress (τmax), e.g., using Mohr's circle relations or τmax = (σ1 - σ3)/2. *(Body)*
+- [ ] Safety Factor (Optional): If yield strength is provided, calculate the Safety Factor (SF) using common failure theories (e.g., von Mises, Tresca). *(Material, Body)*
+- [ ] Enhanced Plotting: Modify Body.plot_result to handle multiple load cases (e.g., plot Moment and Shear diagrams along x for bending). *(Body)*
